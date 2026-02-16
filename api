@@ -1,0 +1,9 @@
+status.js
+export default function handler(req, res) {
+    res.status(200).json({
+        engine: "nautilus-trader",
+        status: "online",
+        execution: false,
+        ai: false
+    });
+}
