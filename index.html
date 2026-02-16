@@ -1,9 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Nen Core</title>
+  <title>Nen Core Command Center</title>
+  <style>
+    body {
+      background: black;
+      color: #00ffcc;
+      font-family: Arial;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .box {
+      border: 1px solid #00ffcc;
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Nen Core Activated</h1>
+
+<h1>Nen Core Command Center</h1>
+
+<div class="box">
+  <h2>Engine Status</h2>
+  <div id="status">Loading...</div>
+</div>
+
+<script>
+async function loadStatus() {
+  try {
+    const response = await fetch('/api/status');
+    const data = await response.json();
+
+    document.getElementById("status").innerHTML =
+      "Engine: " + data.engine + "<br>" +
+      "Status: " + data.status;
+  } catch (error) {
+    document.getElementById("status").innerHTML =
+      "Engine: Offline";
+  }
+}
+
+loadStatus();
+</script>
+
 </body>
 </html>
